@@ -2,39 +2,67 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, pull the source code from repository:
 
 ```bash
+git clone https://github.com/vutrv/restaurant-trpc-next.git
+
+# cd to restaurant-trpc-next folder
+# check nodejs version, should be at least version 18xx, particularly 18.19.0 in this project
+node -v
+
+# install dependencies
+npm install
+
+# generate prisma client
+npm run prisma-generate
+
+# run development
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# build production
+npm run build
+
+# run production
+npm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Database
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Postgres DB is hosting on [http://render.com](http://render.com). The mock data is already created.
+Database information in `DIRECT_DATABASE_URL` variable in `.env` file. You can use database tool management (like DBeaver) to connect hosting db to see the data. 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The migration file can be found in `src/prisma/migrations` folder. 
+You can reset all data, remove or add migration by running these scripts in `src` folder: 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+# reset data
+npx prisma migrate reset
 
-## Learn More
+# remove migrations
+rm -rf prisma/migrations
 
-To learn more about Next.js, take a look at the following resources:
+# create new migration 
+npx prisma migrate dev --name init
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# in root folder, can add mock data to db
+npm run seed
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## tRPC
 
-## Deploy on Vercel
+[tRPC integration with NextJS steps](https://trpc.io/docs/client/nextjs) and [tRPC Edge Runtimes Adapter](https://trpc.io/docs/server/adapters/fetch) are use for setting
+up API routing alternative to traditional REST or GraphQL
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## UI/UX
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[UI/UX reference Figma design](https://www.figma.com/design/rcomlVLL8LS3xfUVSXkCUY/Seoul-Comix-Full-Stack-Applicant-Coding-Test-Assignment--Design-Material?t=oPJzB3SIA2Zvk79X-0)
+
+Image handler wil show the image from API and represent Image Placeholder for Error Response API (some API error with mock data)
+This project uses [`Font Awesome`](https://fontawesome.com/) for custom and display icons, CSS module for style and Responsive
+
+## API Routing
+API definition can be found in `pages/api/trpc/[trpc].tsx`, with `getRestaurants` & `addFavorite` router configuration.
+
