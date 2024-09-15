@@ -1,0 +1,183 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px; 
+  margin: 0 auto; 
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%; 
+  max-width: 800px; 
+  margin: 20px 0;
+  box-sizing: border-box;
+}
+
+.imageContainer {
+  display: flex;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.favorite {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.2); /* 20% opacity */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.title {
+  margin: 12px 0 4px 0;
+  color: #FF692E;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.name {
+  color: #344054;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  white-space: nowrap; 
+  overflow: hidden;         
+  text-overflow: ellipsis; 
+}
+
+.rating {
+  color: #f39c12;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.rateValue, .rateCount {
+  color: #344054;
+}
+
+.featured {
+  display: flex;
+  align-items: center;
+  background-color: #f1c40f;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.descRating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.description, .priceRange {
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap; 
+  overflow: hidden;         
+  text-overflow: ellipsis; 
+  font-weight: 400;
+  margin-bottom: 4px;
+  color: #475467;
+}
+
+.categoryContainer {
+  display: flex;
+  overflow-x: auto;
+  padding: 12px 0;
+  width: 100%;
+  justify-content: start;
+}
+
+.categoryButton {
+  padding: 8px 16px;
+  background-color: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 14px;
+  color: #374151;
+  transition: background-color 0.3s ease;
+}
+
+.categoryButton:hover {
+  background-color: #E5E7EB;
+}
+
+.categoryButton.active {
+  background-color: #FF692E;
+  color: white;
+}
+
+.restaurantList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.categoryContainer::-webkit-scrollbar {
+  height: 8px;
+}
+
+.categoryContainer::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+.categoryContainer::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scroll thumb */
+  border-radius: 10px;
+  border: 2px solid #f0f0f0; /* Makes the scroll thumb smaller */
+}
+
+.categoryContainer::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+@media (max-width: 768px) {
+  .cardContainer {
+    padding: 0 10px; 
+  }
+
+  .card {
+    max-width: 100%; 
+    margin: 10px 0; 
+  }
+
+  .categoryContainer {
+    justify-content: flex-start;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+  }
+
+  .categoryContainer::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  .categoryButton {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

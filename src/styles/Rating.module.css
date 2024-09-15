@@ -1,0 +1,12 @@
+.rating {
+  font-size: 18px;
+  line-height: 24px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2px;
+}
+
+.rateValue {
+  margin-left: 5px;
+}

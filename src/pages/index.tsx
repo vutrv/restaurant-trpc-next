@@ -1,10 +1,23 @@
+import RestaurantList from '@/components/RestaurantList'
 import { trpc } from '@/utils/trpc';
+import ClipLoader from "react-spinners/ClipLoader";
+import styles from '@/styles/Home.module.css';
 
 export default function Home() {
   const {isLoading, isError, error, data} = trpc.getRestaurants.useQuery();
 
   if (isLoading) {
-    return <div><h1>Loading...</h1></div>;
+    return (
+      <div className={styles.loadingContainer}>
+        <ClipLoader
+        color="#000000"
+        loading={isLoading}
+        size={35}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+      </div>
+    );
   }
 
   if (isError) {
@@ -12,11 +25,6 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <h1>Restaurants List:</h1>
-      {data?.map(item => (
-        <p key={item.id}>{JSON.stringify(item.featured)}</p>
-      ))}
-    </div>
+    <RestaurantList restaurants={data}/>
   );
 }
